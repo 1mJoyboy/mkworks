@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order Services</title>
+    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;1,300&family=Vidaloka&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Stylesheet.css">
+</head>
+<body>
+    <section id="order">
+        <a href="./index.html"><img class="logo" src="images/logo-transparent-png.png" alt="Loading..."></a>
+        <div class="order-text">
+          <h1>MK Works</h1>
+          <p>We are making your house better</p>
+          <div class="order-form">
+            <form  action="" onsubmit="send(),clearAll()">
+                <br><br>
+                <p>Plese fill the details</p><br>
+                <label class="lab" for="name">Name : </label><br><br>
+                <input class="ans" type="text" name="name" id="name" required placeholder=" - Enter your name - "><br><br>
+                <label class="lab" for="phnum">Mobile Number : </label><br><br>
+                <input class="ans" type="tel" name="phnum" id="phnum" required placeholder=" - Enter your mobile number - "><br><br>
+                <label class="lab" for="mail">E-mail : </label><br><br>
+                <input class="ans" type="email" name="email" id="mail" required placeholder=" - Enter your email id -"><br><br>
+                <label class="lab" for="ser">What type of service you need ?</label><br><br>
+                <select  name="ser" id="ser" required>
+                    <option value="polishing">Wood Polishing</option>
+                    <option value="house">House Wiring</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="fix">Electrical Equipment Fixing</option>
+                </select><br><br>
+                <label class="lab" for="adress">Adress : </label><br><br>
+                <textarea class="ans" name="adress" id="adress" cols="30" rows="5" required placeholder=" - Enter your adress - "></textarea><br><br><br>
+                <input type="submit" value="Submit" id="sub">
+               </form>
+          </div>
+        </div>
+      </section>
+      <div id="sidenav">
+        <nav>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+
+            <li><a href="#footer">Contact us </a></li>
+          </ul>
+        </nav>
+      </div>
+          <section id="footer">
+      <div class="title-text">
+        <div class="six"></div>
+        <p>Contact us</p>
+        <h1>For More Details</h1>
+      </div>
+      <div class="footerrow">
+        <div class="footerleft">
+        </div>
+        <div class="right">
+          <h1>Our Details</h1>
+          <p><b>Availability :</b> Monday to Saturday</p>
+          <p><b>E-mail :</b> mkworks4you@gmail.com</p>
+          <p><b>Location :</b> Salem , Tamilnadu - 636 030.</p>
+        </div>
+      </div>
+      <div class="social1">
+        <a href="https://instagram.com/mk_works4you?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"><img src="images/icons8-instagram-48.png" alt=""></a>
+        <a href="https://www.facebook.com/profile.php?id=100095190713565"><img src="images/icons8-facebook-48.png" alt=""></a>
+        <a href="https://youtube.com/@MKworks-4you"><img src="images/icons8-youtube-48.png" alt=""></a>
+      </div>
+      <div class="seven">
+        Thank you for using our site - M K Works
+    </div>
+    </section>
+      <div id="menubtn">
+        <img id="menu" src="./images/menuicon.png" alt="Loaing...">
+      </div>
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <script>
+        var menubtn = document.getElementById("menubtn")
+        var  sidenav= document.getElementById("sidenav")
+        var menu = document.getElementById("menu")
+        sidenav.style.right="-250px";
+        menubtn.onclick=function()
+        {
+            if(sidenav.style.right=="-250px"){
+                sidenav.style.right="0";
+                menu.src = "images/cross.png"
+            }
+            else{
+                sidenav.style.right="-250px "
+                menu.src = "images/menuicon.png"
+            }
+        }
+        function clearAll()
+        {
+          document.getElementById('reqform').reset();
+        }
+        function send(e){
+          event.preventDefault();
+          var name = document.getElementById('name').value;
+          var email = document.getElementById('mail').value;
+          var number = document.getElementById('phnum').value;
+          var service = document.getElementById('ser').value;
+          var adress = document.getElementById('adress').value;
+          var body = 'Name : '+name+'<br/> Number : '+number+'<br/> E-Mail : '+email+'<br/> Service : '+service+'<br/> Adress : '+adress;
+          Email.send({
+              Host : "smtp.elasticemail.com",
+              Username : "mkworks4you@gmail.com",
+              Password : "0790F48B112791C305C585D2AB080F242DDB",
+              To : 'mkworks4you@gmail.com',
+              From : "mkworks4you@gmail.com",
+              Subject : "ORDERS",
+              Body : body
+          }).then(
+            message => {
+              if(message=='OK'){
+                alert("Request submitted successfully")
+              }
+              else{
+                alert('Unexpected error...Please try again later')
+              }
+            }
+          );
+        }  
+      </script> 
+</body>
+</html>
